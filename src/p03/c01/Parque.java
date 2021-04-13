@@ -6,7 +6,6 @@ import java.util.Hashtable;
 public class Parque implements IParque{
 
 	private final int maxPersonasTotales = 50;
-	//private Hashtable<String, Integer> contadoresPersonasSalidas;
 	private int contadorPersonasTotales;
 	private Hashtable<String, Integer> contadoresPersonasPuerta;
 	
@@ -14,7 +13,6 @@ public class Parque implements IParque{
 	public Parque() {
 		contadorPersonasTotales = 0;
 		contadoresPersonasPuerta = new Hashtable<String, Integer>();
-		//contadoresPersonasSalidas = new Hashtable<String, Integer>();
 	}
 
 	@Override
@@ -32,7 +30,7 @@ public class Parque implements IParque{
 		
 		//si no puede entrar nadie, no dejamos que se entre
 		//si no hay nadie, no dejamos que se salga
-		if(contadorPersonasTotales == 50) {
+		if(contadorPersonasTotales == maxPersonasTotales) {
 			try {
 				this.wait();
 			} catch (InterruptedException e) {
@@ -61,7 +59,7 @@ public class Parque implements IParque{
 		}
 		
 		//wait/notify
-		if(contadorPersonasTotales == 50) {
+		if(contadorPersonasTotales == maxPersonasTotales) {
 			this.notify();
 		}else if(contadorPersonasTotales == 0) {
 			try {
