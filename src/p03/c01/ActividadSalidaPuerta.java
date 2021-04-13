@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 public class ActividadSalidaPuerta implements Runnable{
 
+	private static final int NUMSALIDAS = 20;
 	private String puerta;
 	private IParque parque;
 	
@@ -18,9 +19,9 @@ public class ActividadSalidaPuerta implements Runnable{
 	@Override
 	public void run() {
 		//mientras el parque no esté vacio, se podrá salir de el.
-		while(parque.getContadorPT() > 0) {
-			parque.salirDelParque(puerta);
+		for (int i = 0; i < NUMSALIDAS; i ++) {
 			try {
+				parque.salirDelParque(puerta);
 				TimeUnit.MILLISECONDS.sleep(new Random().nextInt(5)*1000);
 			} catch (InterruptedException e) {
 				Logger.getGlobal().log(Level.INFO, "Salida interrumpida");
