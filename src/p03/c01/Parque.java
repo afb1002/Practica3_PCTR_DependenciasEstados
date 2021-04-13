@@ -1,4 +1,4 @@
-package p03.c01;
+package src.p03.c01;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -33,7 +33,12 @@ public class Parque implements IParque{
 		//si no puede entrar nadie, no dejamos que se entre
 		//si no hay nadie, no dejamos que se salga
 		if(contadorPersonasTotales == 50) {
-			puerta.wait();
+			try {
+				puerta.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else if(contadorPersonasTotales == 0) {
 			puerta.notify();
 		}
@@ -60,7 +65,12 @@ public class Parque implements IParque{
 		if(contadorPersonasTotales == 50) {
 			puerta.notify();
 		}else if(contadorPersonasTotales == 0) {
-			puerta.wait();
+			try {
+				puerta.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		// Disminuimos el contador
