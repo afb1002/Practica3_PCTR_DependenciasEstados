@@ -1,12 +1,14 @@
 package src.p03.c01;
 
 import java.util.Enumeration;
+
 import java.util.Hashtable;
 
 public class Parque implements IParque{
 
 
-	// TODO 
+	// TODO
+	private final int maxPersonasTotales = 50;
 	private int contadorPersonasTotales;
 	private Hashtable<String, Integer> contadoresPersonasPuerta;
 	
@@ -43,9 +45,6 @@ public class Parque implements IParque{
 		
 	}
 	
-	// 
-	// TODO Método salirDelParque
-	//
 	
 	
 	private void imprimirInfo (String puerta, String movimiento){
@@ -80,6 +79,19 @@ public class Parque implements IParque{
 
 	protected void comprobarAntesDeSalir(){
 		assert contadorPersonasTotales > 0 : "INV: No hay nadie en el parque, nadie puede salir";
+	}
+
+
+	@Override
+	public void salirDelParque(String puerta) {
+		// TODO
+		
+	}
+
+
+	@Override
+	public int getContadorPT() {
+		return contadorPersonasTotales;
 	}
 
 
