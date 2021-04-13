@@ -33,11 +33,7 @@ public class Parque implements IParque{
 		//si no puede entrar nadie, no dejamos que se entre
 		//si no hay nadie, no dejamos que se salga
 		if(contadorPersonasTotales == 50) {
-			try {
-				puerta.wait();
-			} catch (InterruptedException e) {
-				System.out.println("A la espera de que salga alguien");
-			}
+			puerta.wait();
 		}else if(contadorPersonasTotales == 0) {
 			puerta.notify();
 		}
@@ -55,7 +51,26 @@ public class Parque implements IParque{
 	
 	@Override
 	public synchronized void salirDelParque(String puerta) {
-		// TODO
+		// Si no hay entradas por esa puerta, inicializamos
+		if (contadoresPersonasPuerta.get(puerta) == null){
+			contadoresPersonasPuerta.put(puerta, 0);
+		}
+		
+		//wait/notify
+		if(contadorPersonasTotales == 50) {
+			puerta.notify();
+		}else if(contadorPersonasTotales == 0) {
+			puerta.wait();
+		}
+		
+		// Disminuimos el contador
+		contadorPersonasTotales--;
+		
+		// Imprimimos el estado del parque
+		imprimirInfo(puerta, "Salida");
+		
+		// Comprobamos las invariantes
+		checkInvariante();
 	}
 	
 	
