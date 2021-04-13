@@ -34,13 +34,12 @@ public class Parque implements IParque{
 		//si no hay nadie, no dejamos que se salga
 		if(contadorPersonasTotales == 50) {
 			try {
-				puerta.wait();
+				this.wait();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else if(contadorPersonasTotales == 0) {
-			puerta.notify();
+			this.notify();
 		}
 		
 		// Aumentamos el contador total y el individual
@@ -63,12 +62,11 @@ public class Parque implements IParque{
 		
 		//wait/notify
 		if(contadorPersonasTotales == 50) {
-			puerta.notify();
+			this.notify();
 		}else if(contadorPersonasTotales == 0) {
 			try {
-				puerta.wait();
+				this.wait();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
