@@ -1,35 +1,46 @@
-package src.p03.c01;
+package p03.c01;
 
 import java.util.Enumeration;
-
 import java.util.Hashtable;
 
 public class Parque implements IParque{
 
-
-	// TODO
 	private final int maxPersonasTotales = 50;
+	//private Hashtable<String, Integer> contadoresPersonasSalidas;
 	private int contadorPersonasTotales;
 	private Hashtable<String, Integer> contadoresPersonasPuerta;
 	
 	
-	public Parque() {	// TODO
+	public Parque() {
 		contadorPersonasTotales = 0;
 		contadoresPersonasPuerta = new Hashtable<String, Integer>();
-		// TODO
+		//contadoresPersonasSalidas = new Hashtable<String, Integer>();
 	}
 
-
 	@Override
-	public void entrarAlParque(String puerta){		// TODO
+	public int getContadorPT() {
+		return contadorPersonasTotales;
+	}
+	
+	@Override
+	public synchronized void entrarAlParque(String puerta){
 		
 		// Si no hay entradas por esa puerta, inicializamos
 		if (contadoresPersonasPuerta.get(puerta) == null){
 			contadoresPersonasPuerta.put(puerta, 0);
 		}
 		
-		// TODO
-				
+		//si no puede entrar nadie, no dejamos que se entre
+		//si no hay nadie, no dejamos que se salga
+		if(contadorPersonasTotales == 50) {
+			try {
+				puerta.wait();
+			} catch (InterruptedException e) {
+				System.out.println("A la espera de que salga alguien");
+			}
+		}else if(contadorPersonasTotales == 0) {
+			puerta.notify();
+		}
 		
 		// Aumentamos el contador total y el individual
 		contadorPersonasTotales++;		
@@ -38,13 +49,14 @@ public class Parque implements IParque{
 		// Imprimimos el estado del parque
 		imprimirInfo(puerta, "Entrada");
 		
-		// TODO
-		
-		
-		// TODO
-		
+		// Comprobamos las invariantes
+		checkInvariante();
 	}
 	
+	@Override
+	public synchronized void salirDelParque(String puerta) {
+		// TODO
+	}
 	
 	
 	private void imprimirInfo (String puerta, String movimiento){
@@ -74,25 +86,10 @@ public class Parque implements IParque{
 	}
 
 	protected void comprobarAntesDeEntrar(){
-		assert contadorPersonasTotales < maxPersonasTotales : "INV: No hay espacio para que entre más gente al parque";
+		assert contadorPersonasTotales < maxPersonasTotales : "INV: No hay espacio para que entre mÃ¡s gente al parque";
 	}
 
 	protected void comprobarAntesDeSalir(){
 		assert contadorPersonasTotales > 0 : "INV: No hay nadie en el parque, nadie puede salir";
 	}
-
-
-	@Override
-	public void salirDelParque(String puerta) {
-		// TODO
-		
-	}
-
-
-	@Override
-	public int getContadorPT() {
-		return contadorPersonasTotales;
-	}
-
-
 }
