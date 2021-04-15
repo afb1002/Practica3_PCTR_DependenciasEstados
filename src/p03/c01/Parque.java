@@ -1,5 +1,14 @@
 package src.p03.c01;
 
+/*
+ * Práctica 3 de Dependecias de Estados (Parque)
+ * @ version: 1.0
+ * @ date: 15/04/2021
+ * @ author: Miguel Angulo Fernández
+ * @ author: Alejandro Fernández Berrio
+ * @ author: Jose Barbero
+ * */
+
 import java.util.Enumeration;
 import java.util.Hashtable;
 
@@ -15,6 +24,7 @@ public class Parque implements IParque{
 		contadoresPersonasPuerta = new Hashtable<String, Integer>();
 	}
 
+	//método para obtener el atributo privado contadorPersonasTotales
 	@Override
 	public int getContadorPT() {
 		return contadorPersonasTotales;

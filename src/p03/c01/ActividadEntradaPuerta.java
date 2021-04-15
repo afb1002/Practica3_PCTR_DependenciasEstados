@@ -1,5 +1,14 @@
 package src.p03.c01;
 
+/*
+ * Práctica 3 de Dependecias de Estados (Parque)
+ * @ version: 1.0
+ * @ date: 15/04/2021
+ * @ author: Miguel Angulo Fernández
+ * @ author: Alejandro Fernández Berrio
+ * @ author: Jose Barbero
+ * */
+
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;

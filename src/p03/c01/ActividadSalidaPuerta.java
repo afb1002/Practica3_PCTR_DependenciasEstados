@@ -1,5 +1,14 @@
 package src.p03.c01;
 
+/*
+ * Práctica 3 de Dependecias de Estados (Parque)
+ * @ version: 1.0
+ * @ date: 15/04/2021
+ * @ author: Miguel Angulo Fernández
+ * @ author: Alejandro Fernández Berrio
+ * @ author: Jose Barbero
+ * */
+
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -18,7 +27,7 @@ public class ActividadSalidaPuerta implements Runnable{
 	
 	@Override
 	public void run() {
-		//mientras el parque no estÃ© vacio, se podrÃ¡ salir de el.
+		//mientras el parque no esté vacío, se podrá salir de el.
 		for (int i = 0; i < NUMSALIDAS; i ++) {
 			try {
 				parque.salirDelParque(puerta);

@@ -1,5 +1,14 @@
 package src.p03.c01;
 
+/*
+ * Práctica 3 de Dependecias de Estados (Parque)
+ * @ version: 1.0
+ * @ date: 15/04/2021
+ * @ author: Miguel Angulo Fernández
+ * @ author: Alejandro Fernández Berrio
+ * @ author: Jose Barbero
+ * */
+
 public class SistemaLanzador {
 	public static void main(String[] args) {
 		
@@ -8,7 +17,7 @@ public class SistemaLanzador {
 		
 		System.out.println("Â¡Parque abierto!");
 		
-		for (int i = 0; i < 5; i++) {//revisar
+		for (int i = 0; i < 5; i++) {
 			
 			String puerta = ""+((char) (letra_puerta++));
 			
